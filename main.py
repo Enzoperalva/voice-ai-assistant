@@ -1,15 +1,19 @@
 import services.ai_response as ar
 import services.audio_transcription as at 
 
-
-
-print('PERGUNTA DO USUARIO: ')
-print(at.prompt_user)
-
-print()
-
-print('RESPOSTA IA: ')
-
 if __name__ == "__main__": 
-    response = ar.response_ai(at.prompt_user)
+    with open("data/prompt.txt", "r", encoding='utf-8') as arq:
+        prompt = arq.read()
+
+    prompt_user = at.transcribe_with_gemini(
+        audio_path="data/audio_for_ai.wav",
+        prompt=prompt
+    )
+
+    print(f'PERGUNTA DO USUARIO:\n{prompt_user}')
+
+    print()
+
+    print('RESPOSTA IA: ')
+    response = ar.response_ai(prompt_user)
     print(response)
