@@ -26,5 +26,5 @@ audio.terminate()
 with wave.open("data/audio_for_ai.wav", "wb") as arq:
     arq.setnchannels(1)
     arq.setframerate(44000)
-    arq.setsampwidth(audio.get_sample_size(pyaudio.paInt32))
+    arq.setsampwidth(audio.get_sample_size(pyaudio.paInt16))
     arq.writeframes(b"".join(frames))
