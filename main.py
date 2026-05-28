@@ -1,5 +1,5 @@
-import service.getting_response_ai as gr
-import service.audio_transcription as at 
+import services.getting_response_ai as gr
+import services.audio_transcription as at 
 
 
 
