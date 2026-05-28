@@ -15,5 +15,5 @@ if __name__ == "__main__":
     print()
 
     print('RESPOSTA IA: ')
-    response = ar.response_ai(prompt_user)
+    response = ar.generate_response(prompt_user)
     print(response)
