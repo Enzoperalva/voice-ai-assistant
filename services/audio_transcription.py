@@ -5,6 +5,9 @@ from google import genai
 load_dotenv()
 TOKEN = os.getenv('API_KEY')
 
+if not TOKEN:
+    raise RuntimeError('API KEY inválida') 
+
 client = genai.Client(
     api_key=TOKEN
 )
