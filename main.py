@@ -1,4 +1,4 @@
-import services.getting_response_ai as gr
+import services.ai_response as ar
 import services.audio_transcription as at 
 
 
@@ -11,5 +11,5 @@ print()
 print('RESPOSTA IA: ')
 
 if __name__ == "__main__": 
-    response = gr.response_ai(at.prompt_user)
+    response = ar.response_ai(at.prompt_user)
     print(response)
