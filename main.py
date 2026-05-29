@@ -1,19 +1,25 @@
 import services.ai_response as ar
 import services.audio_transcription as at 
+from google.genai.errors import ServerError
+from time import sleep
 
 if __name__ == "__main__": 
     with open("data/prompt.txt", "r", encoding='utf-8') as arq:
         prompt = arq.read()
 
-    prompt_user = at.transcribe_with_gemini(
-        audio_path="data/audio_for_ai.wav",
-        prompt=prompt
-    )
+    try:
+        prompt_user = at.transcribe_with_gemini(
+            audio_path="data/audio_for_ai.wav",
+            prompt=prompt
+        )
+        response = ar.generate_response(prompt_user)
+        
+        print(f'PERGUNTA DO USUARIO:\n{prompt_user}')
+        sleep(5)
+        print()
 
-    print(f'PERGUNTA DO USUARIO:\n{prompt_user}')
-
-    print()
-
-    print('RESPOSTA IA: ')
-    response = ar.generate_response(prompt_user)
-    print(response)
+        print('RESPOSTA IA: ')
+        print(response)
+    
+    except ServerError:
+        print('Gemini indisponível no momento. Tente novamente em alguns minutos')
