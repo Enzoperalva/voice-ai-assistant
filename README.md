@@ -19,6 +19,10 @@ O sistema foi desenvolvido com foco em:
 - **Português do Brasil** – transcrição otimizada com pontuação, capitalização e identificação de falantes.
 - **Simplicidade** – não requer banco de dados ou infraestrutura complexa.
 
+## 🎥 Video explicativo
+
+![Demonstração do projeto](caminho_local_para_video)
+
 ## 🛠️ Stack Técnica
 
 | Tecnologia | Versão |
@@ -208,12 +212,15 @@ Execute o módulo de gravação:
 ```bash
 python services/audio_recording.py
 ```
-
+> ⚠️ **Importante:** O `main.py` espera que o arquivo `data/audio_for_ai.wav` já exista.  
+> Você deve **primeiro** gravar o áudio com `audio_recording.py` (ou colocar seu próprio arquivo `.wav` nesse caminho).  
+> Só depois execute `python main.py`.
 Fale algo e pressione `Ctrl+C` para finalizar a gravação. O arquivo será salvo em `data/audio_for_ai.wav`.
 
-#### Opção B – Usar um arquivo de áudio existente
+#### Opção B – Usar seu próprio arquivo de áudio
 
-Se você já tem um arquivo `.wav`, copie‑o para `data/audio_for_ai.wav` (substituindo o existente). Caso queira mudar o nome ou caminho, ajuste a variável `audio_path` dentro do `main.py`.
+- Substitua o arquivo `data/audio_for_ai.wav` pelo seu (mantenha o nome exato).
+- Ou edite a variável `audio_path` dentro do `main.py` para apontar para o seu arquivo.
 
 #### Após ter o áudio – executar o fluxo principal
 
