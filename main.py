@@ -12,7 +12,11 @@ if __name__ == "__main__":
             audio_path="data/audio_for_ai.wav",
             prompt=prompt
         )
-        if prompt_user:
+        prompt_user = prompt_user.strip()
+        if prompt_user.lower() == 'none':
+            print("Áudio do usuário está corrompido, silencioso ou inaudível.")
+
+        else:
             print(f"PROMPT USER: {prompt_user}")
             response = ar.generate_response(prompt_user)
             
@@ -22,8 +26,6 @@ if __name__ == "__main__":
 
             print('RESPOSTA IA: ')
             print(response)
-        else:
-            print("Usuário não...")
     
     except ServerError:
         print('Gemini indisponível no momento. Tente novamente em alguns minutos')
