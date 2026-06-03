@@ -17,7 +17,7 @@ if __name__ == "__main__":
             print("TENTE NOVAMENTE! Áudio do usuário está corrompido, silencioso ou inaudível.")
 
         else:
-            print(f"PERGUNTA DO USUARIO:\n{prompt_user}")
+            print(f"PERGUNTA DO USUÁRIO:\n{prompt_user}")
             response = ar.generate_response(prompt_user)
             
             print()
