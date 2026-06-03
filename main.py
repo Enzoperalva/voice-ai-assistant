@@ -14,17 +14,15 @@ if __name__ == "__main__":
         )
         prompt_user = prompt_user.strip()
         if prompt_user.lower() == 'none':
-            print("Áudio do usuário está corrompido, silencioso ou inaudível.")
+            print("TENTE NOVAMENTE! Áudio do usuário está corrompido, silencioso ou inaudível.")
 
         else:
-            print(f"PROMPT USER: {prompt_user}")
+            print(f"PERGUNTA DO USUARIO:\n{prompt_user}")
             response = ar.generate_response(prompt_user)
             
-            print(f'PERGUNTA DO USUARIO:\n{prompt_user}')
-            sleep(5)
             print()
-
             print('RESPOSTA IA: ')
+            sleep(3)
             print(response)
     
     except ServerError:
