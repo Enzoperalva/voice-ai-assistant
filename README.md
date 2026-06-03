@@ -1,9 +1,9 @@
 # 🎙️ Assistente de Voz com IA
 
-> Um sistema completo de gravação, transcrição e resposta por IA usando Google Gemini. Ideal para automação de entrevistas, anotações por voz ou criação de assistentes pessoais.
+> Um sistema de captura de áudio, transcrição automática e geração de respostas utilizando a API Google Gemini. O projeto demonstra a integração entre processamento de áudio, engenharia de prompts e modelos generativos em uma arquitetura simples e modular.
 
 ![Python](https://img.shields.io/badge/Python-3.12+-blue)
-![Google Gemini](https://img.shields.io/badge/Google%20Gemini-3.5%20Flash-purple)
+![Google Gemini](https://img.shields.io/badge/Google-Gemini-purple)
 ![PyAudio](https://img.shields.io/badge/PyAudio-0.2.14-red)
 ![Status](https://img.shields.io/badge/status-finalizado-green)
 ![License](https://img.shields.io/badge/license-MIT-yellow)
@@ -19,7 +19,7 @@ O sistema foi desenvolvido com foco em:
 - **Português do Brasil** – transcrição otimizada com pontuação, capitalização e identificação de falantes.
 - **Simplicidade** – não requer banco de dados ou infraestrutura complexa.
 
-## 🎥 Video explicativo
+## 🎥 Vídeo explicativo
 
 ![Demonstração do projeto](caminho_local_para_video)
 
@@ -129,7 +129,7 @@ A pergunta transcrita é enviada novamente ao Gemini, que retorna uma resposta c
 ### 🔁 Fluxo Completo
 
 ```bash
-PERGUNTA DO USUARIO:
+PERGUNTA DO USUÁRIO:
 [texto transcrito]
 
 RESPOSTA IA:
@@ -216,6 +216,7 @@ python services/audio_recording.py
 > Você deve **primeiro** gravar o áudio com `audio_recording.py` (ou colocar seu próprio arquivo `.wav` nesse caminho).  
 > Só depois execute `python main.py`.
 Fale algo e pressione `Ctrl+C` para finalizar a gravação. O arquivo será salvo em `data/audio_for_ai.wav`.
+> ⚠️ Caso o áudio esteja corrompido, silencioso ou não seja possível identificar fala com confiança, o sistema informará o problema e solicitará uma nova tentativa.
 
 #### Opção B – Usar seu próprio arquivo de áudio
 
@@ -245,23 +246,41 @@ Este projeto foi criado para praticar:
 - Modularização e responsabilidade única
 - Tratamento de exceções em requisições externas
 - Uso de variáveis de ambiente para segurança
-- Leitura/escrita de arquivos locais (WAV, TXT, JSON de requisitos)
+- Leitura/escrita de arquivos locais (WAV, TXT)
 
 ## 🔮 Melhorias Futuras
 
-- Correção automática da inconsistência `paInt16` / `paInt32`
-- Interface gráfica simples (Tkinter ou Gradio)
-- Loop contínuo de conversa (pergunta → resposta → nova pergunta)
-- Suporte a vários formatos de áudio (MP3, M4A)
-- Transcrição em tempo real (streaming)
-- Salvar conversas em log
-- Adicionar testes unitários
+### 🚀 Unificação do Fluxo de Execução
+
+Atualmente, o projeto exige duas etapas:
+
+1. Executar `audio_recording.py` para gravar o áudio.
+2. Executar `main.py` para realizar a transcrição e gerar a resposta.
+
+Nas próximas versões, o objetivo é simplificar a experiência do usuário, permitindo que todo o fluxo seja executado a partir de um único comando:
+
+```bash
+python main.py
+```
+
+O próprio sistema será responsável por iniciar a gravação, processar o áudio e exibir a resposta da IA.
+
+### 🐳 Containerização com Docker
+
+Está planejada a criação de uma imagem Docker para facilitar a instalação e execução do projeto em diferentes ambientes.
+
+Objetivos:
+
+* Simplificar a configuração inicial.
+* Garantir maior compatibilidade entre sistemas.
+* Facilitar futuras implantações e compartilhamento do projeto.
+
 
 ## 📌 Observações
 
 - O áudio é gravado em **44000 Hz, mono, 16 bits** – você pode ajustar a taxa no código.
 - A **API do Google Gemini tem limites gratuitos**. Se atingir o rate limit, aguarde alguns segundos e tente novamente.
-- O modelo `gemini-3.5-flash` é rápido e adequado para transcrição e chat. Você pode trocar para `gemini-2.0-flash` (mais novo) se desejar.
+- O modelo utilizado pode ser alterado diretamente no código para atender diferentes necessidades de custo, velocidade e qualidade das respostas.
 - O prompt de transcrição foi especialmente escrito para português do Brasil – sinta‑se à vontade para adaptá‑lo.
 
 ## 👨‍💻 Autor
